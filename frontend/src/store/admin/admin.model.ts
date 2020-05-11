@@ -1,5 +1,9 @@
 export interface AdminStore {
   userListe: UserListeDaten[];
+  isLoading: boolean;
+  uploadedImages: string;
+  //   newDish: DishCreate[];
+  //   newDish: DishCreate;
 }
 
 export interface UserListeDaten {
@@ -10,3 +14,9 @@ export interface UserListeDaten {
   status?: String;
   password?: String;
 }
+
+// export interface DishCreate {
+//   name: String;
+//   ingredients: String;
+//   image: String;
+// }
