@@ -29,8 +29,10 @@ export const dishAddUploadedImage = (source: string) => ({
 export const newDishAdd = (
   name: String,
   ingredients: String,
-  image: String | undefined
+  image: String | undefined,
+  price: String,
+  catigory: String
 ) => ({
   type: NEW_DISH_UPLOAD,
-  payload: { name, ingredients, image },
+  payload: { name, ingredients, image, price, catigory },
 });

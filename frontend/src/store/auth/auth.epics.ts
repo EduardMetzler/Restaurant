@@ -32,10 +32,10 @@ const epicLogin = (action$: any) =>
           "Content-Type": "application/json",
         },
         body: {
-          // email: "eduard.metzler@rambler.ru",
-          // password: "000000",
-          email: "eduard.metzler@mail.ru",
+          email: "eduard.metzler@rambler.ru",
           password: "000000",
+          // email: "eduard.metzler@mail.ru",
+          // password: "000000",
           // email: action.payload.email,
           // password: action.payload.password,
         },
@@ -52,8 +52,8 @@ const epicLogin = (action$: any) =>
         catchError((error) => {
           const responseData = error["response"];
           console.log(responseData);
-
-          return [loginFail(), getErrors(responseData["message"])];
+          return [];
+          // return [loginFail(), getErrors(responseData["message"])];
         })
       )
     )

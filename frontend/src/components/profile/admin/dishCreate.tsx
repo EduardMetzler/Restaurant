@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { AppState } from "../../../store/model";
 import { connect, useDispatch } from "react-redux";
-import { UserListeDaten } from "../../../store/admin/admin.model";
-
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
-import Select from "react-select";
-import M from "materialize-css";
-import { bufferToggle } from "rxjs/operators";
+import { DropDownCategory } from "./dropDownCategory";
 import {
   dishUploadImage,
   newDishAdd,
 } from "../../../store/admin/admin.actions";
-// type AdminSerarhFunktion = (item: any) => void;
+import { Link, useHistory } from "react-router-dom";
+type CategoryFunktion = (item: any) => void;
 
 interface ConnectedState {
   isLoading: boolean;
   uploadedImage?: string;
+  // adminSerarhFunktion: AdminSerarhFunktion;
+
   //   adminSerarhFunktion: AdminSerarhFunktion;
 }
 
@@ -31,12 +28,17 @@ export const DishCreateComponent: React.FC<ConnectedState> = ({
 }) => {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
+  const [price, setPrice] = useState("");
+  const [catigory, setCatigory] = useState("");
+
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = (event: any) => {
-    console.log(name, ingredients, uploadedImage);
-    dispatch(newDishAdd(name, ingredients, uploadedImage));
-    event.preventDefault();
+    console.log(name, ingredients, uploadedImage, price, catigory);
+    dispatch(newDishAdd(name, ingredients, uploadedImage, price, catigory));
+    history.push("/menu");
+    // event.preventDefault();
   };
 
   const handleUploadImage = (e: any) => {
@@ -47,12 +49,19 @@ export const DishCreateComponent: React.FC<ConnectedState> = ({
     dispatch(dishUploadImage(data));
   };
 
+  const categoryFunktion: CategoryFunktion = (item: any) => {
+    setCatigory(item);
+    console.log(item);
+  };
+
   const checkData = () => {
     if (
       name.length < 1 ||
       ingredients.length < 1 ||
       isLoading ||
-      uploadedImage === ""
+      uploadedImage === "" ||
+      price === "" ||
+      catigory === ""
     ) {
       return "btn disabled";
     }
@@ -64,6 +73,8 @@ export const DishCreateComponent: React.FC<ConnectedState> = ({
         <div className="card">
           <div className="card-content">
             <form onSubmit={handleSubmit}>
+              <label>Kategorie</label>
+              <DropDownCategory categoryFunktion={categoryFunktion} />
               <label>
                 Name
                 <input
@@ -81,6 +92,14 @@ export const DishCreateComponent: React.FC<ConnectedState> = ({
                 />
               </label>
               <label>
+                Preis
+                <input
+                  type="text"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </label>
+              <label>
                 Image:
                 <input type="file" onChange={handleUploadImage} name="file" />
                 {isLoading ? (
@@ -93,6 +112,7 @@ export const DishCreateComponent: React.FC<ConnectedState> = ({
                   ></img>
                 )}
               </label>
+
               <input type="submit" value="Erstellen" className={checkData()} />
             </form>
           </div>

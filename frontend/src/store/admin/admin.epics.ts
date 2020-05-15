@@ -15,6 +15,7 @@ import {
 } from "./admin.actions";
 import { getErrors, clearErrors } from "../error/error.actions";
 import { authError } from "../auth/auth.actions";
+import { menuLoad } from "../menu/menu.actions";
 export const BASE_URL = "http://localhost:5000";
 
 const epicUserListeLoad = (action$: any) =>
@@ -89,10 +90,14 @@ const epicnewDishAdd = (action$: any) =>
         mergeMap((response) => {
           //   return [console.log(response.response.secure_url)];
 
-          return [];
+          return [menuLoad()];
         }),
         catchError((error) => {
+          const responseData = error["response"];
+          console.log(responseData);
+
           return [];
+          //   return [];
         })
       )
     )

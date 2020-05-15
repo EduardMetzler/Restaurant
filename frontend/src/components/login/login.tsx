@@ -30,11 +30,11 @@ const LoginComponent: React.FunctionComponent<ConnectedState & OwnProps> = ({
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      history.push("/");
-    }
-  });
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     history.push("/");
+  //   }
+  // });
 
   const handleSubmit = (event: any) => {
     console.log(email, password);

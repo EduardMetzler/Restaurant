@@ -5,7 +5,7 @@ import { UserListeDaten } from "../../../store/admin/admin.model";
 
 import "react-dropdown/style.css";
 
-import { DropDown } from "./dropDown";
+import { DropDownSearch } from "./dropDownSearch";
 import { AdminSearch } from "./adminSearch";
 
 type SelectionFunktion = (item: any) => void;
@@ -68,7 +68,7 @@ export const UserListeComponent: React.FC<ConnectedState> = ({ userListe }) => {
     <>
       <div>
         {" "}
-        <DropDown selectionFunktion={selectionFunktion} />
+        <DropDownSearch selectionFunktion={selectionFunktion} />
         <AdminSearch adminSerarhFunktion={adminSerarhFunktion} />
       </div>
       <table className="highlight centered">

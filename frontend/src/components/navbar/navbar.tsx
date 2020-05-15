@@ -40,6 +40,9 @@ export const NavbarComponent: React.FC<ConnectedState> = ({
           </a>
           <ul className="right hide-on-med-and-down">
             <li>
+              <Link to="/menu">Menu</Link>
+            </li>
+            <li>
               {!isAuthenticated ? <Link to="login">Anmelden </Link> : null}
             </li>
 

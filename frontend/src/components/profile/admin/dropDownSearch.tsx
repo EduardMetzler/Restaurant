@@ -16,7 +16,7 @@ interface ConnectedState {
 
 const mapStateToProps = (state: AppState) => ({});
 
-export const DropDownComponent: React.FC<ConnectedState> = ({
+export const DropDownSearchComponent: React.FC<ConnectedState> = ({
   selectionFunktion,
 }) => {
   const [open, setOpen] = useState(false);
@@ -65,4 +65,4 @@ export const DropDownComponent: React.FC<ConnectedState> = ({
   );
 };
 
-export const DropDown = connect(mapStateToProps)(DropDownComponent);
+export const DropDownSearch = connect(mapStateToProps)(DropDownSearchComponent);
